@@ -1,0 +1,42 @@
+# Build and Release Folders
+bin-debug/
+bin-release/
+[Oo]bj/
+[Bb]in/
+
+# Other files and folders
+.settings/
+.idea/
+data
+
+# Executables
+*.swf
+*.air
+*.ipa
+*.apk
+
+# files
+*/*/.DS_Store
+/**/*.zip
+/**/.DS_Store
+*.mid
+*.mp3
+*.zip
+*.DS_Store
+.DS_Store
+.DS_Store
+# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
+# should NOT be excluded as they contain compiler settings and other important
+# information for Eclipse / Flash Builder.
+utils/.DS_Store
+
+*/*/*/*.txt
+
+# root
+.DS_Store
+*.tsv
+*.jpg
+*.csv
+*.pyc
+utils/mid_dp/.DS_Store
+utils/metrics/.DS_Store
