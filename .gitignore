@@ -25,7 +25,7 @@ Data processing framework/data/raw/research_dataset/Wikifonia/Wikifonia_xml
 # *.zip
 *.DS_Store
 .DS_Store
-.DS_Store
+.gitignore
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
