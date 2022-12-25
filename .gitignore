@@ -16,7 +16,7 @@ bin-release/
 *.apk
 
 # files
-data/raw/research_dataset/Wikifonia/Wikifonia_xml
+Data processing framework/data/raw/research_dataset/Wikifonia/Wikifonia_xml
 */*/.DS_Store
 # /**/*.zip
 /**/.DS_Store
@@ -41,5 +41,6 @@ utils/.DS_Store
 *.pyc
 utils/mid_dp/.DS_Store
 utils/metrics/.DS_Store
-data/raw/research_dataset/Wikifonia/Wikifonia_mid_test/全局调性统一测试.zip
-data/raw/research_dataset/Wikifonia/Wikifonia_xml.zip
+Data processing framework/data/raw/research_dataset/Wikifonia/Wikifonia_mid_test/全局调性统一测试.zip
+Data processing framework/data/raw/research_dataset/Wikifonia/Wikifonia_xml.zip
+*.py
