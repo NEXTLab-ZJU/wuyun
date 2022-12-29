@@ -37,6 +37,7 @@ We obtain Wikifonia dataset from [here](http://www.synthzone.com/files/Wikifonia
 For music generation task, data quality is very important for model training. However, there is a lot of noise in the online symbolic music data, so we set up a symbolic music processing framework for symbolic music understanding and generation tasks. Here, we release many of the core symbolic music processing features, including beat filtering, MIDI quantization (straight notes and triplets), melody skeleton extraction, tension distance calculation, deduplication, and more. Some functions are reproduced or merged from paper and open-sources codes. We will acknowledge their contributions at the bottom of this page.
 
 - **Core functions**
+  - [Track Classification](./Data processing framework/utils/midi_common_process/track_classification.py) ([midi-miner](https://github.com/ruiguo-bio/midi-miner)): lead melody, chord, bass, drum, and others.
   - MIDI Quantization (straight notes and triplets) (WuYun)
   - Total tension calculation ([midi-miner](https://github.com/ruiguo-bio/midi-miner))
   - Rhythmic skeleton extracton  (WuYun)
