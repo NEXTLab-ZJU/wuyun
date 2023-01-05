@@ -55,7 +55,7 @@ For music generation task, data quality is very important for model training. Ho
 - Run the dataset processing script for WuYun. (`prepare_exp1_wikifornia.py`)
 
   ```python
-  python3 Data processing framework/data_gen/paper_wuyun/prepare_exp1_wikifornia.py
+  python3 mdp/data_gen/paper_wuyun/prepare_exp1_wikifornia.py
   ```
 
 
@@ -63,7 +63,7 @@ For music generation task, data quality is very important for model training. Ho
 ## 4. Training
 
 ```bash
-cd WuYun architecture/01_skeleton
+cd wuyun/01_skeleton
 ```
 
 ### 4.1 build dictiory
