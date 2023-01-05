@@ -36,6 +36,8 @@ utils/.DS_Store
 # root
 .DS_Store
 *.tsv
+/mdp/data/raw/research_dataset/Wikifonia/Wikifonia_xml/*.mxl
+/mdp/data/raw/research_dataset/Wikifonia/Wikifonia_xml/*.mxl.*
 *.jpg
 *.csv
 *.pyc
@@ -44,3 +46,4 @@ utils/metrics/.DS_Store
 Data processing framework/data/raw/research_dataset/Wikifonia/Wikifonia_mid_test/全局调性统一测试.zip
 Data processing framework/data/raw/research_dataset/Wikifonia/Wikifonia_xml.zip
 *.py
+*.zip
