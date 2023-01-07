@@ -64,33 +64,39 @@ For music generation task, data quality is very important for model training. Ho
 
 ```bash
 cd wuyun/01_skeleton
+export PYTHONPATH=.
 ```
 
 ### 4.1 build dictiory
-
-```python
-python3 ./paper_tasks/dataset/build_dictionary.py --config configs/exp01_melodyGenratorModule_zhpop.yaml
+Please configure your dictionary save path `binary_data_dir` in `configs/exp01_skeleton_wikifonia.yaml`
+```bash
+python3 ./paper_tasks/dataset/build_dictionary.py --config configs/exp01_skeleton_wikifonia.yaml
 ```
 
 ### 4.2 corpus2events
+Please cofigure your paths in `configs/exp01_skeleton_wikifonia.yaml`:  
+- save path: `binary_data_noChord_path`
+- Training dataset: `raw_skeleton_data_dir_train`
+- Test dataset: `raw_skeleton_data_dir_test`
 
 ```bash
-python3 ./paper_tasks/dataset/corpus_compile.py --config configs/exp01_melodyGenratorModule_zhpop.yaml
+python3 ./paper_tasks/dataset/corpus_compile.py --config configs/exp01_skeleton_wikifonia.yaml
 ```
 
 ### 4.3 training model
+Please cofigure your device and model configuration in `paper_tasks/TransforXL_Small_noChord.yaml`
 
 ```bash
-python3 ./paper_tasks/model/train_pytorch_small_noChord.py --config configs/exp01_melodyGenratorModule_zhpop.yaml
+python3 ./paper_tasks/model/train_pytorch_small_noChord.py --config configs/exp01_skeleton_wikifonia.yaml
 
 ```
 
 ### 4.4 inference
+Please cofigure your checkpoint path `exp_order` in `paper_tasks/inference_withPrompt_small_noChord.py`
 
 ```bash
-python3 ./paper_tasks/model/inference_withPrompt_small_noChord.py --config configs/exp01_melodyGenratorModule_zhpop.yaml
+python3 ./paper_tasks/model/inference_withPrompt_small_noChord.py --config configs/exp01_skeleton_wikifonia.yaml
 ```
-
 
 
 ## 5. Acknowledege
