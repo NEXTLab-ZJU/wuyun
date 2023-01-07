@@ -16,34 +16,23 @@ bin-release/
 *.apk
 
 # files
-Data processing framework/data/raw/research_dataset/Wikifonia/Wikifonia_xml
-*/*/.DS_Store
-# /**/*.zip
-/**/.DS_Store
+
 *.mid
 *.mp3
 # *.zip
 *.DS_Store
 .DS_Store
-.gitignore
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
 utils/.DS_Store
 
-*/*/*/*.txt
 
 # root
-.DS_Store
 *.tsv
 /mdp/data/raw/research_dataset/Wikifonia/Wikifonia_xml/*.mxl
 /mdp/data/raw/research_dataset/Wikifonia/Wikifonia_xml/*.mxl.*
-*.jpg
-*.csv
 *.pyc
 utils/mid_dp/.DS_Store
 utils/metrics/.DS_Store
-Data processing framework/data/raw/research_dataset/Wikifonia/Wikifonia_mid_test/全局调性统一测试.zip
-Data processing framework/data/raw/research_dataset/Wikifonia/Wikifonia_xml.zip
-*.py
 *.zip

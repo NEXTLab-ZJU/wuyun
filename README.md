@@ -53,14 +53,17 @@ For music generation task, data quality is very important for model training. Ho
 ​	Note: There are a lot of customized parameters for you to adjust the results you want. Therefor, the final output of the number of files may be different from the number in the paper. Our common goal is to obtain better training data for music understanding and generation tasks. If you find better parameters, please feel free to contact us.
 
 - Run the dataset processing script for WuYun. (`prepare_exp1_wikifornia.py`)
+Please configure your paths in `mdp/data_gen/paper_wuyun/prepare_exp1_wikifornia.py`
 
   ```python
-  python3 mdp/data_gen/paper_wuyun/prepare_exp1_wikifornia.py
+  cd mdp
+  export PYTHONPATH=.
+  python3 data_gen/paper_wuyun/prepare_exp1_wikifornia.py
   ```
 
 
 
-## 4. Training
+## 4. Melodic Skeleton Construction
 
 ```bash
 cd wuyun/01_skeleton
@@ -99,5 +102,9 @@ python3 ./paper_tasks/model/inference_withPrompt_small_noChord.py --config confi
 ```
 
 
-## 5. Acknowledege
+## 5. Melody inpainting
+
+
+
+## Acknowledege
 
