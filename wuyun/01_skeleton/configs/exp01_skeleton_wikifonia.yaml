@@ -1,16 +1,11 @@
-binary_data_noChord_path: "data/binary/words" # the binary data path
+# save dictionary
+binary_data_dir: "data/binary"                  # the binary data path
 
-# ----------------------------------------
-# Pretrain | Skeleton data
-# ----------------------------------------
+# pretrain skeleton data
+binary_data_noChord_path: "data/binary/words"   # the binary data path
 raw_skeleton_data_dir_train: '/mnt/nextlab/xinda/MusicGeneration/Paper_SKeleton_Framework/Dataset/v20220517/wikifornia/13_dataset_held50/Wikifornia_rhythmSkeleton/train'
 raw_skeleton_data_dir_test: '/mnt/nextlab/xinda/MusicGeneration/Paper_SKeleton_Framework/Dataset/v20220517/wikifornia/13_dataset_held50/Wikifornia_rhythmSkeleton/test'
 config_path_small_noChord: paper_tasks/model/TransforXL_Small_noChord.yaml
-
-# save dictionary
-binary_data_dir: "data/binary" # the binary data path
-batch_size: 10
-
 
 # Model
 hidden_size: 256
@@ -24,7 +19,8 @@ ffn_act: relu
 ffn_padding: SAME
 
 # optimizer
-lr: 0.001 # start from 2.0
+batch_size: 10
+lr: 0.001 
 optimizer_adam_beta1: 0.9
 optimizer_adam_beta2: 0.98
 weight_decay: 0
@@ -33,24 +29,13 @@ weight_decay: 0
 patience: 10
 
 MAX_BARS: 64
-# MAX_POSITION_UNIT: 96
-
-
-
-
-
-# # ------------------- structure dataset processing settings ------------------- #
-
 sentence_maxlen: 512
 
 
-# # ---------- Checkpoint Setting ---------#
-num_ckpt_keep: 5
-
-
-# # --------- Trainer Settings----------- #
+# trainer settings
 total_epoch: 1000
 clip_grad_norm: 1
+num_ckpt_keep: 5
 log_interval: 100 # # How often to log within steps
 val_check_interval: 10000 #  How often to check the validation set. use int to check every n steps (batches).
 
