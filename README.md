@@ -1,6 +1,6 @@
 
 
-# WuYun (悟韵)
+# WuYun: Exploring hierarchical skeleton-guided melody generation using knowledge-enhanced deep learning
 
 **We are working on refining the music generation project, including code, comments, and documentation**
 
@@ -8,7 +8,7 @@ Authors: Kejun Zhang†, Xinda Wu†, Tieyao Zhang, Zhijie Huang, Xu Tan, Qihao 
 
 Paper | Blog | [Audio demo (Zendo) ](https://doi.org/10.5281/zenodo.7480956) | Online interactive system
 
-WuYun, is  a knowledge-enhanced deep learning architecture for improving the structure of generated melodies. Inspired by the hierarchical organization principle of structure and prolongation, we decompose the melody generation process into melodic skeleton construction and melody inpainting stages, which first generate the most structurally important notes to construct a melodic skeleton and subsequently infill it with dynamically decorative notes into a full-fledged melody. Specifically, we introduce a melodic skeleton extraction framework from rhythm and pitch dimensions based on music domain knowledge to help the sequence learning model hallucinate or predict a novel melodic skeleton. The reconstructed melodic skeletons serve as additional knowledge to provide auxiliary guidance for the melody generation process and are saved as the underlying framework of the final generated melody.
+WuYun (悟韵), is  a knowledge-enhanced deep learning architecture for improving the structure of generated melodies. Inspired by the hierarchical organization principle of structure and prolongation, we decompose the melody generation process into melodic skeleton construction and melody inpainting stages, which first generate the most structurally important notes to construct a melodic skeleton and subsequently infill it with dynamically decorative notes into a full-fledged melody. Specifically, we introduce a melodic skeleton extraction framework from rhythm and pitch dimensions based on music domain knowledge to help the sequence learning model hallucinate or predict a novel melodic skeleton. The reconstructed melodic skeletons serve as additional knowledge to provide auxiliary guidance for the melody generation process and are saved as the underlying framework of the final generated melody.
 
 <p align="center"><img src="./img/wuyun_architecture.png" width="800"><br/>Architecture of WuYun. </p>
 
