@@ -113,7 +113,7 @@ python3 ./paper_tasks/model/inference_withPrompt_small_noChord.py --config confi
 
 
 ## 7. Future directions (NEXTLab)
-Our team (more than six phd studuent, 16 graduate and undergraduate students) is working in the following directions：
+Our team (more than six phd studuents, 16 graduate and undergraduate students) is working in the following directions：
 - Knowledge-Enhanced Music Generation (DL/PLM)
 - Explainable AI for Iterative and Interaction Music Composition System
 - Multimodal Music Generation (e.g., Stable Diffusion)
