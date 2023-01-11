@@ -40,7 +40,7 @@ def melody_skeleton_job(midi_path, dst, dst_dataset_root_skeleton_vis):
 
 def melody_skeleton_point(midi_path):
     m = Melody_Skeleton_Extractor(midi_path)
-    skeleton_melody_notes_list = m.get_skeleton()  # 旋律骨架
+    skeleton_melody_notes_list = m.get_skeleton()  
     note_idx_list = []
     midi = miditoolkit.MidiFile(midi_path)
     for skeleton_note in skeleton_melody_notes_list:

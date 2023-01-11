@@ -5,9 +5,9 @@ import os
 import subprocess
 from copy import deepcopy
 import numpy as np
+from glob import glob
 
-
-def filter_mid_44_wikifornia_job(src_path, dst_dir):
+def filter_mid_44_job(src_path, dst_dir):
     try:
         midi = miditoolkit.MidiFile(src_path)
         ts = midi.time_signature_changes
@@ -122,9 +122,10 @@ def filter_44_midi(src_dir, dst_dir):
     else:
         os.makedirs(dst_dir)
 
-    path_list = os.listdir(src_dir)
+    # path_list = os.listdir(src_dir)
+    path_list = glob(f"{src_dir}/**/*.mid", recursive=True)
     pool = Pool(int(os.getenv('N_PROC', os.cpu_count())))
-    futures = [pool.apply_async(filter_mid_44_wikifornia_job, args=[
+    futures = [pool.apply_async(filter_mid_44_job, args=[
         os.path.join(src_dir, midi_fn), dst_dir
     ]) for midi_fn in path_list if ".DS_Store" not in midi_fn]
     pool.close()
