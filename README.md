@@ -109,7 +109,7 @@ python3 ./paper_tasks/model/inference_withPrompt_small_noChord.py --config confi
 
 
 ## 6. Iterative and interactive music generation system (closed beta)
-<p align="center"><img src="./img/wuyun_system.png" width="800"><br/>WuYun iterative and interactive music generation. </p>
+<p align="center"><img src="./img/wuyun_system.png" width="800"><br/>WuYun iterative and interactive music generation system. </p>
 
 
 ## 7. Future directions (NEXTLab)
