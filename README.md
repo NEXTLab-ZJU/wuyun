@@ -1,6 +1,6 @@
 
 
-# WuYun
+# WuYun (悟韵)
 
 **We are working on refining the music generation project, including code, comments, and documentation**
 
