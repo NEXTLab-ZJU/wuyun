@@ -108,3 +108,23 @@ python3 ./paper_tasks/model/inference_withPrompt_small_noChord.py --config confi
 
 
 
+## 6. Iterative and interactive music generation system (closed beta)
+<p align="center"><img src="./img/wuyun_system.png" width="800"><br/>WuYun iterative and interactive music generation. </p>
+
+
+## 7. Future directions (NEXTLab)
+Our team (more than six phd studuent, 16 graduate and undergraduate students) is working in the following directions：
+- Knowledge-Enhanced Music Generation (DL/PLM)
+- Explainable AI for Iterative and Interaction Music Composition System
+- Multimodal Music Generation (e.g., Stable Diffusion)
+- High-qualitiy Database Construction for Music Generation and MIR Tasks
+- Real-time Accompaniment Generation (Zihao Wang)
+- Lyric-to-melody generation (Chen Zhang)
+- More
+
+
+
+
+
+
+
