@@ -1,0 +1,90 @@
+tokenization:
+  dict_chord_path: 'dataset/chord.pkl'
+  dict_path: 'dataset'
+
+dataset:
+  skeleton: ['Down_Beat','Long', 'Rhythm', 'Rhythm and Chord tones and Tonal intersection', 'Rhythm and Chord tones intersection', 'Rhythm and Tonal intersection', 'Syncopation', 'Tonal', 'All']
+  train_data: '../dataset/wuyun_melodic_skeleton_dataset_v2/train'
+  valid_data: '../dataset/wuyun_melodic_skeleton_dataset_v2/valid'
+  ske_words_data: 'dataset/skeleton/words'
+  pro_words_data: 'dataset/prolongation/words'
+  melody_words_data: 'dataset/melody/words'       # AB. study - end2end
+
+trainer:
+  seed: 42
+  num_workers: 10
+  skeleton_lr: 0.00001
+  prolongation_lr: 0.0005            # warning: if the value of lr is too small, the recurrent transformer can not fit the skeleton guidance! (e.g., 0.00001)
+  optimizer_adam_beta1: 0.9
+  optimizer_adam_beta2: 0.98
+  weight_decay: 0.1
+  max_length: 512
+  truncation: random        # ['right', 'random', 'bar']
+  num_repeat: 4            # data augmentation, default = 1
+  batch_size: 48           
+  skeleton_num_epochs: 401      # 700 (not bad)
+  skeleton_save_freq: 50
+  prolongation_num_epochs: 101
+  prolongation_save_freq: 25
+  num_pretrain_epochs: 1001
+  num_finetune_epochs: 801
+  save_freq: 25
+  ske_ckpt_path: 'checkpoint/skeleton'
+  pro_ckpt_path: 'checkpoint/prolongation'
+  melody_ckpt_path: 'checkpoint/melody'
+
+# transformer-xl (decoder-only architechture)
+skeleton_model:
+  n_head: 8 
+  n_layer: 4
+  d_embed: 512
+  d_model: 512
+  d_head: 64          # d_head = d_embed // n_head
+  d_inner: 2048      
+  dropout: 0.1 
+  cutoffs: []
+  div_val: 1
+  pre_lnorm: True           #apply LayerNorm to the input instead of the output
+  mem_len: 512
+  clamp_len: -1             #use the same pos embeddings after clamp_len
+  same_length: True         #use the same attn length for all tokens
+  proj_share_all_but_first: True
+  attn_type: 0
+  sample_softmax: -1
+  adaptive: False
+  dropatt: 0.0              #attention probability dropout rate
+  untie_r: False
+  init: 'normal'            #parameter initializer to use.
+  init_range: 0.1
+  proj_init_std: 0.01
+  init_std: 0.02            #parameters initialized by N(0, init_std)
+  layer_norm_epsilon: 1e-5
+  query_dim: 16             #64
+  seq_len: 512
+  emb_init: 'normal'        #parameter initializer to use.
+  emb_init_range: 0.01      #parameters initialized by U(-init_range, init_range)
+  ext_len: 0
+  tgt_len: 70
+  eval_tgt_len: 50
+  position_concat: False  
+
+# recurrent transformer (encoder-decoder architechture)
+prolongation_model:
+  hidden_size: 512    # d_inner =   hidden_size * 4 = 2048  (hard code)  
+  num_heads: 8
+  enc_layers: 4
+  dec_layers: 4
+  dropout: 0.1
+  dec_ffn_kernel_size: 1
+  enc_ffn_kernel_size: 1
+
+inference:
+  skeleton_dir: 'checkpoint/skeleton'
+  prolongation_dir: 'checkpoint/prolongation'
+  prolongation_real_dir: 'checkpoint/prolongation_real'
+  melody_dir: 'gen/melody'
+  temperature: 0.99
+  topk: 10
+  n_target_bar: 64
+  max_infer_tokens: 2048      # if the required generated bars of a melody are longer than 32, the max inference tokens should larger than 512.
+  num_gen: 3000

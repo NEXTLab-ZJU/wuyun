@@ -1,12 +1,16 @@
-
-
 # WuYun: Exploring hierarchical skeleton-guided melody generation using knowledge-enhanced deep learning
 
-**We are working on refining the music generation project, including code, comments, and documentation**
+**Mentors:** [Kejun Zhang*](https://person.zju.edu.cn/zhangkejun), [Tan Xu](https://scholar.google.co.uk/citations?user=tob-U1oAAAAJ&hl=en&oi=ao), [Lingyun Sun](https://scholar.google.co.uk/citations?hl=en&user=zzW8d-wAAAAJ&view_op=list_works&sortby=pubdate)  
+**Authors:** [Xinda Wu*](https://github.com/Xinda-Wu), [Tieyao Zhang](http://next.zju.edu.cn/people/zhang-tie-yao/), Zhijie Huang, Liang Qihao and Songruoyao Wu  
 
-Authors: Kejun Zhang†, Xinda Wu†, Tieyao Zhang, Zhijie Huang, Xu Tan, Qihao Liang, Songruoyao Wu, Lingyun Sun*
+> ∗ Equal contribution
+#### **WuYun （悟韵）**：[Paper arXiv](https://arxiv.org/abs/2301.04488) | [Demo Page](https://wuyun-demo.github.io/wuyun/) | ...
 
-Paper | Blog | [Dataset & Audio demo (Zendo) ](https://doi.org/10.5281/zenodo.7480956) | Online interactive system
+Official PyTorch implementation of preprint paper "WuYun: Exploring hierarchical skeleton-guided melody generation using knowledge-enhanced deep learning" (Updated, Version3, Add Chord Tones Analysis, 202402).
+
+
+
+## Intro
 
 WuYun (悟韵), is  a knowledge-enhanced deep learning architecture for improving the structure of generated melodies. Inspired by the hierarchical organization principle of structure and prolongation, we decompose the melody generation process into melodic skeleton construction and melody inpainting stages, which first generate the most structurally important notes to construct a melodic skeleton and subsequently infill it with dynamically decorative notes into a full-fledged melody. Specifically, we introduce a melodic skeleton extraction framework from rhythm and pitch dimensions based on music domain knowledge to help the sequence learning model hallucinate or predict a novel melodic skeleton. The reconstructed melodic skeletons serve as additional knowledge to provide auxiliary guidance for the melody generation process and are saved as the underlying framework of the final generated melody.
 
@@ -14,105 +18,166 @@ WuYun (悟韵), is  a knowledge-enhanced deep learning architecture for improvin
 
 
 
+## Installation
 
-
-## 1. Data
-
-We obtain Wikifonia dataset from [here](http://www.synthzone.com/files/Wikifonia/Wikifonia.zip) and transfer them to be the MIDI format. We provide Wikifomia dataset in the MIDI format on [Zenodo](https://doi.org/10.5281/zenodo.7480956).
-
-
-
-## 2. Dependency (Ours)
-
-- Python: v3.8
-
-- Pytorch: v1.7.1
-
-- GPU: NVIDIA GTX 2080-Ti GPU 
-
-  Note: There are no specific requirements for software versions. We will release more details about the dependencies we use.
-
-
-
-## 3. Data Processing Framework
-
-For music generation task, data quality is very important for model training. However, there is a lot of noise in the online symbolic music data, so we set up a symbolic music processing framework for symbolic music understanding and generation tasks. Here, we release many of the core symbolic music processing features, including beat filtering, MIDI quantization (straight notes and triplets), melody skeleton extraction, tension distance calculation, deduplication, and more. Some functions are reproduced or merged from paper and open-sources codes. We will acknowledge their contributions at the bottom of this page.
-
-- **Core functions**
-  - Track Classification ([midi-miner](https://github.com/ruiguo-bio/midi-miner)): lead melody, chord, bass, drum, and others.
-  - MIDI Quantization (straight notes and triplets) (WuYun)
-  - Total tension calculation ([midi-miner](https://github.com/ruiguo-bio/midi-miner))
-  - Rhythmic skeleton extracton  (WuYun)
-  - Tonal skeleton extraction  (WuYun)
-  - Deduplication ([MusicBert](https://github.com/microsoft/muzic))
-  - Chord Recognition (Magenta)
-  - Tonality Unification (WuYun)
-  - Octave Transposition (Normal function)
-  - ...
-
-​	Note: There are a lot of customized parameters for you to adjust the results you want. Therefor, the final output of the number of files may be different from the number in the paper. Our common goal is to obtain better training data for music understanding and generation tasks. If you find better parameters, please feel free to contact us.
-
-- Run the dataset processing script for WuYun. (`prepare_exp1_wikifornia.py`)
-  Please configure your paths in `mdp/data_gen/paper_wuyun/prepare_exp1_wikifornia.py`
-
-  ```python
-  cd mdp
-  export PYTHONPATH=.
-  python3 data_gen/paper_wuyun/prepare_exp1_wikifornia.py
-  ```
-
-
-
-## 4. Melodic Skeleton Construction
+**Clone this repository**
 
 ```bash
-cd wuyun/01_skeleton
-export PYTHONPATH=.
+cd /WuYun-Torch
 ```
 
-### 4.1 build dictiory
-Please configure your dictionary save path `binary_data_dir` in `configs/exp01_skeleton_wikifonia.yaml`
+## Dependencies (Ours)
+* NVIDIA GPU + CUDA + CUDNN
+* python 3.8.5
+* Required packages:
+    * miditoolkit
+    * torch 2.0.1
+    * others...(install what your missing)
+
+
+
+## Data Preprocessing
+
+__core code__: ```./preprocessing/mdp_wuyun.py```  
+__doc__: ```./preprocessing/README.md```
+
+**Core functions**:
+
+- Select 4/4 ts ( requirement >= 8 bars )
+- Track Classification ([midi-miner](https://github.com/ruiguo-bio/midi-miner)): lead melody, chord, bass, drum, and others.
+- MIDI Quantization (straight notes and triplets) (WuYun)
+- Octave Transposition
+- Chord Recognition (Magenta)
+- filter midis by heuristic rules
+- Deduplication (pitch interval)
+- ~~Tonality Unification (WuYun)~~
+- ...
+
+
+
+## Melodic Skeleton Extraction
+
+__code dir__: ```./preprocessing/utils/melodic_skeleton```  
+`Type` means the type of melodic skeleton (proportion of all the notes).  
+| No. | Type | Ratio | Code |
+|---|---|---|---|
+|0| Down Beat | ~39.79% | melodic_skeleton_analysis_rhythm.py |
+|1| Long Note | ~22.13% | melodic_skeleton_analysis_rhythm.py |
+|2| Rhythm | ~44.49% | melodic_skeleton_analysis_rhythm.py |
+|3| Rhythm ∩ Chord Tones ∩ Tonal Tones | ~14.76% | melodic_skeleton.py|
+|4| Rhythm ∩ Chord Tones | ~35.24% | melodic_skeleton.py|
+|5| Rhythm ∩ Tonal Tones | ~17.6% | melodic_skeleton.py|
+|6| Syncopation | ~8.7% | melodic_skeleton_analysis_rhythm.py |
+|7| Tonal Tones | ~28.46% | melodic_skeleton_analysis_tonal_tones.py|
+
+For the latest version of the popular music melody skeleton extraction algorithm, please refer to the code.
+
+
+
+## WuYun Framework
+
+
+### Stage1 - Melodic Skeleton Construction (旋律骨架构建)
+
+**1. build dictionary**
 ```bash
-python3 ./paper_tasks/dataset/build_dictionary.py --config configs/exp01_skeleton_wikifonia.yaml
-```
+# prepare your chord vocabulary (optional)
+python3 dataset/statistic.py
 
-### 4.2 corpus2events
-Please cofigure your paths in `configs/exp01_skeleton_wikifonia.yaml`:  
-- save path: `binary_data_noChord_path`
-- Training dataset: `raw_skeleton_data_dir_train`
-- Test dataset: `raw_skeleton_data_dir_test`
-
-```bash
-python3 ./paper_tasks/dataset/corpus_compile.py --config configs/exp01_skeleton_wikifonia.yaml
-```
-
-### 4.3 training model
-Please cofigure your device and model configuration in `paper_tasks/TransforXL_Small_noChord.yaml`
-
-```bash
-python3 ./paper_tasks/model/train_pytorch_small_noChord.py --config configs/exp01_skeleton_wikifonia.yaml
-
-```
-
-### 4.4 inference
-Please cofigure your checkpoint path `exp_order` in `paper_tasks/inference_withPrompt_small_noChord.py`
-
-```bash
-python3 ./paper_tasks/model/inference_withPrompt_small_noChord.py --config configs/exp01_skeleton_wikifonia.yaml
+# build your pre-defined vocabulary
+python3 modules/build_dictionary.py
 ```
 
 
-## 5. Melody inpainting
+**2. tokenization**
+```bash
+python3 models/skeleton/dataloader.py
+```
 
-[**Work in progress**] We plan to open source the code associated with this part in the future.
+**3. train skeleton generation model**  
+
+```bash
+# if you want to use other kind of melodic skeleton, just change the type number according to your datasets
+# for example
+python3 models/skeleton/main.py --type 4 --gpu_id 4   # 'Rhythm ∩ Chord'
+```
+
+**4. inference melodic skeleton from scratch**  
+Note: Objective metrics don't directly reflect subjective results, so try a few more model checkpoint after the model converges.
+```bash
+# for example
+python3 models/skeleton/inference.py --type 4 --gpu_id 2 --ckpt_fn 'ckpt_epoch_100.pth.tar' --epoch 100
+```
+
+
+### Stage2 - Melodic Prolongation Realization  (旋律延长/装饰实现)
+**1. tokenization**
+
+```bash
+python3 models/prolongation/dataloader.py
+```
+
+**2. train melodic prolongation model**
+```bash
+# for example
+python3 models/prolongation/main.py --type 4 --gpu_id 8   # 'Rhythm ∩ Chord'
+
+```
+
+**3. inference from real melodic skeletons**（基于人类音乐的旋律骨架完成装饰）
+
+```bash
+# for example
+python3 models/prolongation/inference_real.py --type 2 --gpu_id 0 --stage scratch_T4 --ckpt_fn 'ckpt_epoch_25.pt' --epoch '25'
+
+```
+
+**4. inference from generated melodic skeletons** （基于AI生成的旋律骨架完成装饰）
+
+```bash 
+# for example
+python3 models/prolongation/inference.py --type 4 --gpu_id 0 --ckpt_fn 'ckpt_epoch_401_loss_0.0111.pt' --epoch 401 --ske_epoch 401
+
+```
+
+## Evaluation
+Evaluation Metrics list:
+- OA(PCH)
+- OA(IOI)
+- SE
+
+__code dir__: './evaluation'
 
 
 
-## 6. Iterative and interactive music generation system
+
+## Add Accompaniment
+you can write chord and bass tracks if the task is melody geration with chord progression.
+```bash
+python3 utils/add_chord_bass_track.py
+```
 
 
 
+## WuYun System Design
+
+<p align="center"><img src="./img/wuyun_system.png" width="800"><br/>Wuyun System. </p>
 
 
 
+## Citation
+```bibtex
+@article{zhang2023wuyun,
+  title={WuYun: Exploring hierarchical skeleton-guided melody generation using knowledge-enhanced deep learning},
+  author={Zhang, Kejun and Wu, Xinda and Zhang, Tieyao and Huang, Zhijie and Tan, Xu and Liang, Qihao and Wu, Songruoyao and Sun, Lingyun},
+  journal={arXiv preprint arXiv:2301.04488},
+  year={2023}
+}
+```
+#### Acknowledgement  
 
+We appreciate to the following authors who make their code available or provide technical support:  
+1. Compound Word Transformer: https://github.com/YatingMusic/compound-word-transformer
+2. Melons: Yi Zou.
+3. Music Transformer: https://github.com/gwinndr/MusicTransformer-Pytorch
+4. Museformer
