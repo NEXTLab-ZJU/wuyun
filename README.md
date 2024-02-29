@@ -70,7 +70,7 @@ __code dir__: ```./preprocessing/utils/melodic_skeleton```
 |6| Syncopation | ~8.7% | melodic_skeleton_analysis_rhythm.py |
 |7| Tonal Tones | ~28.46% | melodic_skeleton_analysis_tonal_tones.py|
 
-For the latest version of the popular music melody skeleton extraction algorithm, please refer to the code.
+For the latest version of the popular music melodic skeleton extraction algorithm, please refer to the code.
 
 
 
@@ -128,7 +128,7 @@ python3 models/prolongation/main.py --type 4 --gpu_id 8   # 'Rhythm ∩ Chord'
 
 ```bash
 # for example
-python3 models/prolongation/inference_real.py --type 2 --gpu_id 0 --stage scratch_T4 --ckpt_fn 'ckpt_epoch_25.pt' --epoch '25'
+python3 models/prolongation/inference_real.py --type 2 --gpu_id 0 --ckpt_fn 'ckpt_epoch_25.pt' --epoch '25'
 
 ```
 
