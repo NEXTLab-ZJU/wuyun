@@ -177,7 +177,6 @@ python3 utils/add_chord_bass_track.py
 #### Acknowledgement  
 
 We appreciate to the following authors who make their code available or provide technical support:  
+1. Music Transformer: https://github.com/gwinndr/MusicTransformer-Pytorch
 1. Compound Word Transformer: https://github.com/YatingMusic/compound-word-transformer
 2. Melons: Yi Zou.
-3. Music Transformer: https://github.com/gwinndr/MusicTransformer-Pytorch
-4. Museformer
