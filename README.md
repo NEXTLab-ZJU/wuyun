@@ -1,7 +1,7 @@
 # WuYun: Exploring hierarchical skeleton-guided melody generation using knowledge-enhanced deep learning
 
 **Mentors:** [Kejun Zhang*](https://person.zju.edu.cn/zhangkejun), [Tan Xu](https://scholar.google.co.uk/citations?user=tob-U1oAAAAJ&hl=en&oi=ao), [Lingyun Sun](https://scholar.google.co.uk/citations?hl=en&user=zzW8d-wAAAAJ&view_op=list_works&sortby=pubdate)  
-**Authors:** [Xinda Wu*](https://github.com/Xinda-Wu), [Tieyao Zhang](http://next.zju.edu.cn/people/zhang-tie-yao/), Zhijie Huang, Liang Qihao and Songruoyao Wu  
+**Authors:** [Xinda Wu*](https://scholar.google.com.hk/citations?hl=zh-CN&user=sz9DzcsAAAAJ&view_op=list_works&sortby=pubdate), [Tieyao Zhang](http://next.zju.edu.cn/people/zhang-tie-yao/), Zhijie Huang, Liang Qihao, and Songruoyao Wu
 
 > ∗ Equal contribution
 #### **WuYun （悟韵）**：[Paper arXiv](https://arxiv.org/abs/2301.04488) | [Demo Page](https://wuyun-demo.github.io/wuyun/) | ...
@@ -159,7 +159,7 @@ python3 utils/add_chord_bass_track.py
 
 
 
-## WuYun System Design
+## WuYun System Design (close beta test)
 
 <p align="center"><img src="./img/wuyun_system.png" width="800"><br/>Wuyun System. </p>
 
