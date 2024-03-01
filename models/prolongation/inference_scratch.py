@@ -20,8 +20,8 @@ if __name__ == '__main__':
     parser.add_argument('--type', type=int, default=0)
     parser.add_argument('--gpu_id', type=int, default=0)
     parser.add_argument('--ckpt_fn', type=str, default='')
-    parser.add_argument('--epoch', type=int, default=0)
-    parser.add_argument('--repeat', type=str, default='TX')
+    parser.add_argument('--ske_epoch', type=int, default=0)
+    parser.add_argument('--pro_epoch', type=int, default=0)
     args = parser.parse_args()
 
     hparams = get_args()
@@ -63,7 +63,7 @@ if __name__ == '__main__':
     print(f"| load ckpt from {ckpt_path}.")
 
     # output dir
-    output_dir = os.path.join(ckpt_dir, 'gen_scratch', f'prolong_{args.ckpt_fn}', f'epoch_{args.epoch}')
+    output_dir = os.path.join(ckpt_dir, 'gen', 'scratch', f'skeleton_{args.ske_epoch}_Prolongation_{args.pro_epoch}')
     create_dir(output_dir)
     print(f"Let's infilling the {skeleton_type}'s skeleton to melody")
 
@@ -72,7 +72,7 @@ if __name__ == '__main__':
     # -------------------------------------------------------------------------------------------
     with torch.no_grad():
         for i in tqdm(range(inferConfig['num_gen'])):
-            skeleton_files_path = f'checkpoint/skeleton/{skeleton_type}/gen/E{args.epoch}/skeleton{args.type}_sampling_t0.99k10_{i}.mid'
+            skeleton_files_path = f'checkpoint/skeleton/{skeleton_type}/gen/E{args.ske_epoch}/skeleton{args.type}_sampling_t0.99k10_{i}.mid'
             midi_name = os.path.basename(skeleton_files_path)
 
             try:

@@ -73,8 +73,8 @@ print(f"| load ckpt from {ckpt_path}.")
 # -------------------------------------------------------------------------------------------
 print(f"Let's infilling the {skeleton_type}'s skeleton to melody")
 with torch.no_grad():
-    for t in range(11, 20):
-        output_dir = os.path.join(ckpt_dir, 'gen', f'real_epoch-{args.epoch}', f"batch_{t}")
+    for t in range(1, 11):
+        output_dir = os.path.join(ckpt_dir, 'gen', 'real', f'epoch-{args.epoch}', f"batch_{t}")
         create_dir(output_dir)
         try:
             for idx, data in enumerate(tqdm(valid_dataloader)):

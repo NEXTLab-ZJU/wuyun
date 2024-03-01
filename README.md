@@ -47,9 +47,9 @@ __doc__: ```./preprocessing/README.md```
 - Track Classification ([midi-miner](https://github.com/ruiguo-bio/midi-miner)): lead melody, chord, bass, drum, and others.
 - MIDI Quantization (straight notes and triplets) (WuYun)
 - Octave Transposition
-- Chord Recognition (Magenta)
-- filter midis by heuristic rules
+- Filter midis by heuristic rules
 - Deduplication (pitch interval)
+- ~~Chord Recognition (Magenta)~~
 - ~~Tonality Unification (WuYun)~~
 - ...
 
@@ -106,7 +106,7 @@ python3 models/skeleton/main.py --type 4 --gpu_id 4   # 'Rhythm ∩ Chord'
 Note: Objective metrics don't directly reflect subjective results, so try a few more model checkpoint after the model converges.
 ```bash
 # for example
-python3 models/skeleton/inference.py --type 4 --gpu_id 2 --ckpt_fn 'ckpt_epoch_100.pth.tar' --epoch 100
+python3 models/skeleton/inference.py --type 4 --gpu_id 2 --ckpt_fn 'ckpt_epoch_400.pth.tar' --epoch 400
 ```
 
 
@@ -128,7 +128,7 @@ python3 models/prolongation/main.py --type 4 --gpu_id 8   # 'Rhythm ∩ Chord'
 
 ```bash
 # for example
-python3 models/prolongation/inference_real.py --type 2 --gpu_id 0 --ckpt_fn 'ckpt_epoch_25.pt' --epoch '25'
+python3 models/prolongation/inference_real.py --type 4 --gpu_id 0 --ckpt_fn 'ckpt_epoch_25.pt' --epoch '25'
 
 ```
 
@@ -136,7 +136,7 @@ python3 models/prolongation/inference_real.py --type 2 --gpu_id 0 --ckpt_fn 'ckp
 
 ```bash 
 # for example
-python3 models/prolongation/inference.py --type 4 --gpu_id 0 --ckpt_fn 'ckpt_epoch_401_loss_0.0111.pt' --epoch 401 --ske_epoch 401
+python3 models/prolongation/inference_scratch.py --type 4 --gpu_id 0 --ckpt_fn 'ckpt_epoch_25.pt' --pro_epoch '25' --ske_epoch '400'
 
 ```
 
@@ -173,6 +173,8 @@ python3 utils/add_chord_bass_track.py
   journal={arXiv preprint arXiv:2301.04488},
   year={2023}
 }
+
+
 ```
 #### Acknowledgement  
 
