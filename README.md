@@ -53,6 +53,8 @@ __doc__: ```./preprocessing/README.md```
 - ~~Tonality Unification (WuYun)~~
 - ...
 
+Note: For the detailed melody data processing procedure, please refer to ```WuYun``` and ```MelodyGLM```
+
 
 
 ## Melodic Skeleton Extraction
@@ -174,7 +176,12 @@ python3 utils/add_chord_bass_track.py
   year={2023}
 }
 
-
+@article{wu2023melodyglm,
+  title={MelodyGLM: Multi-task Pre-training for Symbolic Melody Generation},
+  author={Wu, Xinda and Huang, Zhijie and Zhang, Kejun and Yu, Jiaxing and Tan, Xu and Zhang, Tieyao and Wang, Zihao and Sun, Lingyun},
+  journal={arXiv preprint arXiv:2309.10738},
+  year={2023}
+}
 ```
 #### Acknowledgement  
 
