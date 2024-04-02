@@ -59,8 +59,9 @@ Note: For the detailed melody data processing procedure, please refer to ```WuYu
 
 ## Melodic Skeleton Extraction
 
-__code dir__: ```./preprocessing/utils/melodic_skeleton```  
+Extract the type of melody skeleton you need using  ```class Melody_Skeleton_Extractor``` in __code dir__ ```./preprocessing/utils/melodic_skeleton```  
 `Type` means the type of melodic skeleton (proportion of all the notes).  
+
 | No. | Type | Ratio | Code |
 |---|---|---|---|
 |0| Down Beat | ~39.79% | melodic_skeleton_analysis_rhythm.py |

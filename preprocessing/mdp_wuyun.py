@@ -33,7 +33,6 @@ if __name__ == '__main__':
         dst_dir_pitch_shift = os.path.join(dst_dir, '5_pitch_shift')
         dst_dir_quality = os.path.join(dst_dir, '6_quality')
         dst_dir_dedup = os.path.join(dst_dir, '7_dedup')
-        dst_dir_skeleton = os.path.join(dst_dir, '8_skeleton')
 
 
         # -------------------------------------------------------------------------------- #
