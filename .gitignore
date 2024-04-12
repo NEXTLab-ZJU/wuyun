@@ -7,19 +7,17 @@ bin-release/
 # Other files and folders
 .settings/
 .idea/
-# data
 
 # Executables
 *.swf
 *.air
 *.ipa
 *.apk
+*.pyc
+
 
 # files
 
-*.mid
-*.mp3
-# *.zip
 *.DS_Store
 .DS_Store
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
@@ -27,12 +25,3 @@ bin-release/
 # information for Eclipse / Flash Builder.
 utils/.DS_Store
 
-
-# root
-*.tsv
-/mdp/data/raw/research_dataset/Wikifonia/Wikifonia_xml/*.mxl
-/mdp/data/raw/research_dataset/Wikifonia/Wikifonia_xml/*.mxl.*
-*.pyc
-utils/mid_dp/.DS_Store
-utils/metrics/.DS_Store
-*.zip
